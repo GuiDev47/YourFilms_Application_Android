@@ -41,6 +41,7 @@
         android:text="Rechercher" />
 
     <TextView
+        android:id="@+id/Titre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/searchButton"
@@ -50,6 +51,19 @@
         android:textColor="@color/white"
         android:textStyle="bold"
         android:text="Tendances"
+        />
+
+    <TextView
+        android:id="@+id/Film"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/Titre"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="24dp"
+        android:textSize="28sp"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:text="film"
         />
 
 
