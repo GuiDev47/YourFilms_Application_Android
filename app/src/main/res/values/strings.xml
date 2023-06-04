@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">YourFilmsVF</string>
+    <string name="client_last_name">Nom</string>
+    <string name="gender_woman">Femme</string>
+    <string name="gender_man">Homme</string>
+    <string name="client_gender">Sexe</string>
+
+    <string-array name="levels">
+        <item>Débutant</item>
+        <item>Intermédiaire</item>
+        <item>Avancé</item>
+    </string-array>
+</resources>

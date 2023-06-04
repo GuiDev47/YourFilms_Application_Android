@@ -1,0 +1,13 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="#FFFFFF" /> <!-- Couleur de fond -->
+    <corners android:radius="14dp" /> <!-- Rayon des coins arrondis -->
+    <stroke
+        android:color="#CCCCCC"
+        android:width="2dp"
+    /> <!-- Épaisseur de la bordure -->
+    <padding
+        android:left="2dp"
+        android:top="2dp"
+        android:right="2dp"
+        android:bottom="2dp" /> <!-- Marge intérieure pour afficher la bordure -->
+</shape>
