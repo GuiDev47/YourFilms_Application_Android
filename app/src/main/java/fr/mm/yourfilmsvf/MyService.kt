@@ -20,5 +20,5 @@ interface MyService {
     fun getService(@Query("query") movie: String): Call<JsonElement>
 
     @GET("movie/popular?api_key=$API_KEY&page=1&language=FR")
-    fun getPopular(): Call<JsonObject>
+    fun getPopular(): Call<JsonElement>
 }
