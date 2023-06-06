@@ -19,6 +19,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class fragment_home : Fragment() {
 
     private var dataList: List<Film> = emptyList()
+    private var dataList2: List<Film> = emptyList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,15 +29,15 @@ class fragment_home : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_home, container, false)
 
-        val fragmentContainer: FrameLayout = view.findViewById(R.id.fragment_recycler)
-        //Appel API
+
+        //Recycler 1
         val retrofit: Retrofit = Retrofit.Builder()
-            .baseUrl("https://api.themoviedb.org/3/search/")
+            .baseUrl("https://api.themoviedb.org/3/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
         val movieService = retrofit.create(MyService::class.java)
-        val result = movieService.getService("star wars")
+        val result = movieService.getPopular()
         result.enqueue(object : Callback<FilmList> {
             override fun onResponse(call: Call<FilmList>, response: Response<FilmList>) {
                 if (response.isSuccessful) {
@@ -57,13 +58,32 @@ class fragment_home : Fragment() {
             }
         })
 
-            //Log.d("TEST TEST TEST ----------------")
 
-        val recycler = fragment_recycler.newInstance(dataList)
 
-        childFragmentManager.beginTransaction()
-            .replace(R.id.fragment_recycler, recycler)
-            .commit()
+        //Recycler 2 Favoris
+
+
+        val result2 = movieService.getService("star wars")
+        result2.enqueue(object : Callback<FilmList> {
+            override fun onResponse(call: Call<FilmList>, response: Response<FilmList>) {
+                if (response.isSuccessful) {
+                    Log.d("HomeActivity", "Réponse réussie")
+                    val filmList = response.body()
+                    dataList = filmList?.results?: emptyList()
+                    val recycler = fragment_recycler.newInstance(dataList)
+
+                    childFragmentManager.beginTransaction()
+                        .replace(R.id.fragment_recycler_fav, recycler)
+                        .commit()
+                } else {
+                    Log.d("API Error", "Response code: ${response.code()}")
+                }
+            }
+
+            override fun onFailure(call: Call<FilmList>, t: Throwable) {
+                Log.e("API Error", "API call failed", t)
+            }
+        })
 
         return view
     }

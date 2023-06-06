@@ -29,16 +29,15 @@ class HomeActivity : AppCompatActivity() {
         val text = findViewById<TextView>(R.id.text)
         //Appel API
         val retrofit: Retrofit = Retrofit.Builder()
-            .baseUrl("https://api.themoviedb.org/3/search/")
+            .baseUrl("https://api.themoviedb.org/3/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-
         val movieService = retrofit.create(MyService::class.java)
+
         val result = movieService.getService("star wars")
         result.enqueue(object : Callback<FilmList> {
             override fun onResponse(call: Call<FilmList>, response: Response<FilmList>) {
                 if (response.isSuccessful) {
-                    Log.d("HomeActivity", "Réponse réussie")
                     val filmList = response.body()
                     val dataList = filmList?.results?: emptyList()
                     val posterPath = dataList.get(0)?.poster_path

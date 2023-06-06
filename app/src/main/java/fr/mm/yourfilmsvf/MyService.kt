@@ -20,9 +20,9 @@ interface MyService {
         const val API_KEY = "5ed2457caa404469f0efeafe37b654d8"
     }
 
-    @GET("movie?api_key=$API_KEY&language=FR&page=1")
+    @GET("search/movie?api_key=$API_KEY&language=FR&page=1")
     fun getService(@Query("query") movie: String): Call<FilmList>
 
     @GET("movie/popular?api_key=$API_KEY&page=1&language=FR")
-    fun getPopular(): Call<JsonElement>
+    fun getPopular(): Call<FilmList>
 }

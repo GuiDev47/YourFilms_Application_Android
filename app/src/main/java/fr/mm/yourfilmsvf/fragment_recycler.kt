@@ -23,7 +23,7 @@ class fragment_recycler : Fragment() {
         val view = inflater.inflate(R.layout.fragment_recycler, container, false)
 
         val recyclerView: RecyclerView = view.findViewById(R.id.recycler)
-        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        recyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
 
 
         val adapter = FilmAdapter(dataList)

@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/search"
         android:textSize="24sp"
         android:hint="Rechercher un film" />
@@ -30,18 +30,37 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/searchButton"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="15dp"
         android:layout_marginLeft="24dp"
         android:textSize="28sp"
         android:textColor="@color/white"
         android:textStyle="bold"
-        android:text="Tendances"
+        android:text="Populaires"
         />
 
     <FrameLayout
         android:id="@+id/fragment_recycler"
         android:layout_width="match_parent"
-        android:layout_height="200sp"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/TitreTendances" />
+
+    <TextView
+        android:id="@+id/TitreFavoris"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/fragment_recycler"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="24dp"
+        android:textSize="28sp"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:text="Favoris"
+        />
+
+    <FrameLayout
+        android:id="@+id/fragment_recycler_fav"
+        android:layout_width="match_parent"
+        android:layout_height="200sp"
+        android:layout_below="@+id/TitreFavoris" />
 
 </RelativeLayout>
