@@ -5,11 +5,16 @@
     android:layout_height="match_parent"
     android:background="@color/main">
 
+    <EditText
+        android:id="@+id/test"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Test Test"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler"
-        android:layout_below="@id/TitreTendances"
+        android:layout_below="@id/test"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content" />
 
 </RelativeLayout>

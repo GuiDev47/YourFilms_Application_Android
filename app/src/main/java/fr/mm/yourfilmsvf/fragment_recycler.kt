@@ -11,7 +11,8 @@ import androidx.recyclerview.widget.RecyclerView
 
 class fragment_recycler : Fragment() {
 
-    private var dataList: ArrayList<FilmClass>? = null
+
+    private var dataList: List<Film> = emptyList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,7 +33,7 @@ class fragment_recycler : Fragment() {
     }
 
     companion object {
-        fun newInstance(dataList: ArrayList<FilmClass>): fragment_recycler {
+        fun newInstance(dataList: List<Film>): fragment_recycler {
             val fragment = fragment_recycler()
             fragment.dataList = dataList
             return fragment

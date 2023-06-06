@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class FilmAdapter(private val dataList: List<FilmClass>) : RecyclerView.Adapter<FilmAdapter.ViewHolder>() {
+class FilmAdapter(private val dataList: List<Film>) : RecyclerView.Adapter<FilmAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val title: TextView = view.findViewById(R.id.textView)
@@ -18,7 +18,7 @@ class FilmAdapter(private val dataList: List<FilmClass>) : RecyclerView.Adapter<
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val data = dataList[position]
+        val data = dataList.get(position)
         holder.title.text = data.title
     }
 

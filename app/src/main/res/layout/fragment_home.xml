@@ -38,15 +38,10 @@
         android:text="Tendances"
         />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/listTendances"
-        android:layout_below="@id/TitreTendances"
+    <FrameLayout
+        android:id="@+id/fragment_recycler"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
-
-
-
-
+        android:layout_height="200sp"
+        android:layout_below="@+id/TitreTendances" />
 
 </RelativeLayout>
