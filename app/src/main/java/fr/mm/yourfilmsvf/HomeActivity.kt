@@ -6,6 +6,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.gson.Gson
 import com.google.gson.JsonElement
 import com.squareup.picasso.Picasso
@@ -17,6 +18,8 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.converter.gson.GsonConverterFactory
 import fr.mm.yourfilmsvf.arrayToFilms
+import android.view.MenuItem
+
 
 
 class HomeActivity : AppCompatActivity() {
@@ -24,51 +27,41 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
-        val Film = findViewById<TextView>(R.id.Film)
-        Film.text = "ok"
 
-        val retrofit: Retrofit = Retrofit.Builder()
-            .baseUrl("https://api.themoviedb.org/3/search/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-
-        val movieService = retrofit.create(MyService::class.java)
-        val result = movieService.getService("star wars")
-
-        result.enqueue(object : Callback<JsonElement> {
-            override fun onResponse(call: Call<JsonElement>, response: Response<JsonElement>) {
-                if (response.isSuccessful) {
-                    val jsonResponse = response.body()
-                    val jsonObject = jsonResponse?.asJsonObject
-                    val array = jsonObject?.getAsJsonArray("results")
-
-                    if (array != null) {
-                        val films = arrayToFilms(array)
-
-                        val popular = findViewById<ImageView>(R.id.trendingMovieImage)
-                        val posterPath = films?.get(1)?.poster_path
-                        val posterPath2 = posterPath?.substring(1, posterPath.length - 1)
-                        //val posterPath = "/wqnLdwVXoBjKibFRR5U3y0aDUhs.jpg"
-                        Picasso.get()
-                            .load("https://image.tmdb.org/t/p/w500$posterPath2")
-                            .into(popular)
-
-                        Film.text = "https://image.tmdb.org/t/p/w500$posterPath2"
-
-                        //Film.text = films?.get(1)?.poster_path
-                    } else {
-                        Film.text = "Pas de résultats disponibles"
-                    }
+        val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottom_navigation)
+        bottomNavigationView.setOnNavigationItemSelectedListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.menu_item_qrcode -> {
+                    val fragment_home = fragment_home() // Remplacez FragmentMenu1 par votre propre fragment
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.fragment_container, fragment_home)
+                        .commit()
+                    true
                 }
+                R.id.menu_item_main -> {
+                    val fragment_home = fragment_home() // Remplacez FragmentMenu1 par votre propre fragment
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.fragment_container, fragment_home)
+                        .commit()
+                    true
+                }
+                R.id.menu_item_heart -> {
+                    val fragment_home = fragment_home() // Remplacez FragmentMenu1 par votre propre fragment
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.fragment_container, fragment_home)
+                        .commit()
+                    true
+                }
+                else -> false
             }
+        }
 
-            override fun onFailure(call: Call<JsonElement>, t: Throwable) {
-                Film.text = "Erreur de chargement"
-            }
-        })
+        }
 
 
 
 
-    }
+
+
+
 }
