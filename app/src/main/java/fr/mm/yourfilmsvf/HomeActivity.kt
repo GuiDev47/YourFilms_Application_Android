@@ -21,40 +21,8 @@ import android.widget.*
 class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         setContentView(R.layout.activity_home)
 
-
-        val popular = findViewById<ImageView>(R.id.image)
-        val text = findViewById<TextView>(R.id.text)
-        //Appel API
-        val retrofit: Retrofit = Retrofit.Builder()
-            .baseUrl("https://api.themoviedb.org/3/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-        val movieService = retrofit.create(MyService::class.java)
-
-        val result = movieService.getService("star wars")
-        result.enqueue(object : Callback<FilmList> {
-            override fun onResponse(call: Call<FilmList>, response: Response<FilmList>) {
-                if (response.isSuccessful) {
-                    val filmList = response.body()
-                    val dataList = filmList?.results?: emptyList()
-                    val posterPath = dataList.get(0)?.poster_path
-                    text.text=posterPath
-                    Picasso.get()
-                        .load("https://image.tmdb.org/t/p/w500$posterPath")
-                        .into(popular)
-
-                } else {
-                    Log.d("API Error", "Response code: ${response.code()}")
-                }
-            }
-
-            override fun onFailure(call: Call<FilmList>, t: Throwable) {
-                Log.e("API Error", "API call failed", t)
-            }
-        })
 
         val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottom_navigation)
         bottomNavigationView.setOnNavigationItemSelectedListener { menuItem ->

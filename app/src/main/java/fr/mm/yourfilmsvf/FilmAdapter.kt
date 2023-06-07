@@ -1,11 +1,14 @@
 package fr.mm.yourfilmsvf
 
+import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.google.gson.Gson
 import com.squareup.picasso.Picasso
 
 class FilmAdapter(private val dataList: List<Film>) : RecyclerView.Adapter<FilmAdapter.ViewHolder>() {
@@ -24,12 +27,24 @@ class FilmAdapter(private val dataList: List<Film>) : RecyclerView.Adapter<FilmA
         val data = dataList.get(position)
         holder.title.text = data.title
         val posterPath=data.poster_path
+        val id = data.id
 
         Picasso.get()
             .load("https://image.tmdb.org/t/p/w500$posterPath")
             .into(holder.poster)
 
+        val popular = holder.poster.setOnClickListener{
+            val context = holder.itemView.context
+            val intent = Intent(context, activity_film_details::class.java)
+            val gson = Gson()
+            val filmString = gson.toJson(data)
+            intent.putExtra("film", filmString)
+            context.startActivity(intent)
+        }
     }
+
+
+
 
     override fun getItemCount(): Int {
         return dataList.size
