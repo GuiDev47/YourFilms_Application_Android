@@ -55,16 +55,16 @@ class HomeActivity : AppCompatActivity() {
                     true
                 }
                 R.id.menu_item_heart -> {
-                    val fragment_home = fragment_home() // Remplacez FragmentMenu1 par votre propre fragment
+                    val fragment_favorites = fragment_favorites() // Remplacez FragmentMenu1 par votre propre fragment
                     supportFragmentManager.beginTransaction()
-                        .replace(R.id.fragment_container, fragment_home)
+                        .replace(R.id.fragment_container, fragment_favorites)
                         .commit()
                     true
                 }
                 R.id.menu_item_about -> {
-                    val fragment_home = fragment_home() // Remplacez FragmentMenu1 par votre propre fragment
+                    val fragment_about = fragment_about() // Remplacez FragmentMenu1 par votre propre fragment
                     supportFragmentManager.beginTransaction()
-                        .replace(R.id.fragment_container, fragment_home)
+                        .replace(R.id.fragment_container, fragment_about)
                         .commit()
                     true
                 }

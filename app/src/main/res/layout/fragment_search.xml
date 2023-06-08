@@ -13,7 +13,7 @@
         android:layout_marginTop="30dp"
         android:background="@drawable/search"
         android:textSize="24sp"
-        android:hint="Rechercher un film" />
+        android:hint="Rechercher un film"/>
 
     <Button
         android:id="@+id/searchButton"
@@ -23,13 +23,13 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"
         android:textSize="20sp"
-        android:text="Rechercher" />
+        android:text="Rechercher"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="15dp"
         android:layout_below="@id/searchButton"
         android:orientation="vertical"
         />

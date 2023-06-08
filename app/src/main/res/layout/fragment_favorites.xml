@@ -32,7 +32,7 @@
         android:textSize="28sp"
         android:textColor="@color/white"
         android:textStyle="bold"
-        android:text="Populaires"
+        android:text="Favoris"
         />
 
     <FrameLayout
@@ -40,24 +40,5 @@
         android:layout_width="match_parent"
         android:layout_height="170sp"
         android:layout_below="@+id/TitreTendances" />
-
-    <TextView
-        android:id="@+id/TitreFavoris"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/fragment_recycler"
-        android:layout_marginTop="15dp"
-        android:layout_marginLeft="24dp"
-        android:textSize="28sp"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        android:text="Favoris"
-        />
-
-    <FrameLayout
-        android:id="@+id/fragment_recycler_fav"
-        android:layout_width="match_parent"
-        android:layout_height="170sp"
-        android:layout_below="@+id/TitreFavoris" />
 
 </RelativeLayout>

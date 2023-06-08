@@ -32,32 +32,44 @@
         android:textSize="28sp"
         android:textColor="@color/white"
         android:textStyle="bold"
-        android:text="Populaires"
+        android:text="Un projet"
         />
 
-    <FrameLayout
-        android:id="@+id/fragment_recycler"
-        android:layout_width="match_parent"
-        android:layout_height="170sp"
-        android:layout_below="@+id/TitreTendances" />
-
     <TextView
-        android:id="@+id/TitreFavoris"
+        android:id="@+id/text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/fragment_recycler"
-        android:layout_marginTop="15dp"
+        android:layout_below="@id/TitreTendances"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="24dp"
+        android:textSize="15sp"
+        android:textColor="@color/white"
+        android:text="L'application 'YourFilms' a été créée dans le cadre des études d'ingénierie numérique à l'EPF Cachan de Guillaume BODARD, et ainsi de l'évaluation du module 'Matériel Mobile'."
+    />
+
+    <TextView
+        android:id="@+id/titre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text"
+        android:layout_marginTop="20dp"
         android:layout_marginLeft="24dp"
         android:textSize="28sp"
         android:textColor="@color/white"
         android:textStyle="bold"
-        android:text="Favoris"
+        android:text="Des données Open-Source"
         />
 
-    <FrameLayout
-        android:id="@+id/fragment_recycler_fav"
-        android:layout_width="match_parent"
-        android:layout_height="170sp"
-        android:layout_below="@+id/TitreFavoris" />
+    <TextView
+        android:id="@+id/text2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/titre"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="24dp"
+        android:textSize="15sp"
+        android:textColor="@color/white"
+        android:text="L'ensemble des données proviennent de la base de donnée TMBd. N'importe quelle personne peut utiliser TMBd et son API afin de récupérer des informations concernant des films ou séries."
+        />
 
 </RelativeLayout>
