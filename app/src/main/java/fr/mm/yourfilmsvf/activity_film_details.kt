@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.google.gson.Gson
 import com.google.gson.JsonObject
 import com.squareup.picasso.Picasso
@@ -40,6 +41,7 @@ class activity_film_details : AppCompatActivity() {
         val add = findViewById<ImageView>(R.id.add)
 
         val filmString: String? = intent.getStringExtra("film")
+
         if (filmString != null) {
             val gson = Gson()
             val film: Film = gson.fromJson(filmString, Film::class.java)
@@ -50,14 +52,52 @@ class activity_film_details : AppCompatActivity() {
             sortie.text = "Sortie le : ${film.release_date}"
             val id = film.id
 
+            val retrofit2: Retrofit = Retrofit.Builder()
+                .baseUrl("https://api.themoviedb.org/3/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+
+
+            val movieService2 = retrofit2.create(MyService::class.java)
+            val result2 = movieService2.getFavorites()
+            var favlist : List<Film> = emptyList()
+            result2.enqueue(object : Callback<FilmList> {
+                override fun onResponse(call: Call<FilmList>, response: Response<FilmList>) {
+                    if (response.isSuccessful) {
+                        val filmList = response.body()
+                        favlist = filmList?.results?: emptyList()
+                        if (favlist.contains(film)){
+                            fav.setImageResource(R.drawable.heart)
+                        }
+
+                    } else {
+                        Log.d("API Error", "Response code: ${response.code()}")
+                    }
+                }
+
+                override fun onFailure(call: Call<FilmList>, t: Throwable) {
+                    Log.e("API Error", "API call failed", t)
+                }
+            })
+
             fav.setOnClickListener{
                 val retrofit: Retrofit = Retrofit.Builder()
                     .baseUrl("https://api.themoviedb.org/3/")
                     .addConverterFactory(GsonConverterFactory.create())
                     .build()
                 val movieService = retrofit.create(MyService::class.java)
+                var body = ""
 
-                val body = "{\"media_type\":\"movie\",\"media_id\":${id},\"favorite\":true}"
+                val currentsrc = fav.drawable
+                var newSrc = 0
+                if (currentsrc.constantState == ContextCompat.getDrawable(this, R.drawable.coeurvide)?.constantState) {
+                    newSrc = R.drawable.heart
+                    body = "{\"media_type\":\"movie\",\"media_id\":${id},\"favorite\":true}"
+                } else {
+                    newSrc = R.drawable.coeurvide
+                    body = "{\"media_type\":\"movie\",\"media_id\":${id},\"favorite\":false}"
+                }
+
                 val mediaType = "application/json".toMediaType()
                 val requestBody = RequestBody.create(mediaType, body)
 
@@ -67,7 +107,7 @@ class activity_film_details : AppCompatActivity() {
                     override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
                         if (response.isSuccessful) {
                             Log.d("fav: ", "ok")
-                            fav.setImageResource(R.drawable.heart)
+                            fav.setImageResource(newSrc)
                         } else {
                             Log.d("API Error", "Response code: ${response.code()}")
                         }

@@ -41,4 +41,12 @@
         android:layout_height="170sp"
         android:layout_below="@+id/TitreTendances" />
 
+    <TextView
+        android:layout_width="320sp"
+        android:layout_height="2sp"
+        android:layout_below="@+id/fragment_recycler"
+        android:background="@color/deco"
+        android:layout_centerHorizontal="true"/>
+
+
 </RelativeLayout>

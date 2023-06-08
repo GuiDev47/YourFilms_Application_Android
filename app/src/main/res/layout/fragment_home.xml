@@ -42,10 +42,19 @@
         android:layout_below="@+id/TitreTendances" />
 
     <TextView
+        android:id="@+id/barre"
+        android:layout_width="320sp"
+        android:layout_height="2sp"
+        android:layout_below="@+id/fragment_recycler"
+        android:layout_marginTop="15sp"
+        android:background="@color/deco"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
         android:id="@+id/TitreFavoris"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/fragment_recycler"
+        android:layout_below="@id/barre"
         android:layout_marginTop="15dp"
         android:layout_marginLeft="24dp"
         android:textSize="28sp"
