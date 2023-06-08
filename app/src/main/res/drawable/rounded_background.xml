@@ -1,0 +1,11 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <corners android:radius="8dp" /> <!-- Ajustez le rayon selon vos préférences -->
+    <gradient
+        android:startColor="#000000"
+        android:angle="45"
+    />
+    <stroke
+        android:color="#000000"
+        android:width="2dp"
+        />
+</shape>

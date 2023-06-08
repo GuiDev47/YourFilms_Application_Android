@@ -23,14 +23,27 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
-
         val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottom_navigation)
+        val fragment_home = fragment_home()
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, fragment_home)
+            .commit()
+
+        bottomNavigationView.menu.findItem(R.id.menu_item_main).isChecked = true
+
         bottomNavigationView.setOnNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.menu_item_qrcode -> {
                     val fragment_home = fragment_home() // Remplacez FragmentMenu1 par votre propre fragment
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.fragment_container, fragment_home)
+                        .commit()
+                    true
+                }
+                R.id.menu_item_loop -> {
+                    val fragment_search = fragment_search()
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.fragment_container, fragment_search)
                         .commit()
                     true
                 }
@@ -48,16 +61,15 @@ class HomeActivity : AppCompatActivity() {
                         .commit()
                     true
                 }
+                R.id.menu_item_about -> {
+                    val fragment_home = fragment_home() // Remplacez FragmentMenu1 par votre propre fragment
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.fragment_container, fragment_home)
+                        .commit()
+                    true
+                }
                 else -> false
             }
         }
-
-        }
-
-
-
-
-
-
-
+    }
 }

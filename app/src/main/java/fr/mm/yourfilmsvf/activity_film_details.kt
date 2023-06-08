@@ -34,10 +34,8 @@ class activity_film_details : AppCompatActivity() {
         val sortie = findViewById<TextView>(R.id.Sortie)
 
         val filmString: String? = intent.getStringExtra("film")
-        Log.d("TAG", "filmString: ${filmString ?: "null"}")
         if (filmString != null) {
             val gson = Gson()
-            Log.d("ok",filmString)
             val film: Film = gson.fromJson(filmString, Film::class.java)
 
             title.text = film.title

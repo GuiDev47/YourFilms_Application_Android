@@ -23,7 +23,7 @@ interface MyService {
     @GET("search/movie?api_key=$API_KEY&language=FR&page=1")
     fun getService(@Query("query") movie: String): Call<FilmList>
 
-    @GET("movie/popular?api_key=$API_KEY&page=1&language=FR")
+    @GET("movie/popular?api_key=$API_KEY&language=FR&page=1")
     fun getPopular(): Call<FilmList>
 
     @GET("recommendations?api_key=$API_KEY&language=FR&page=1")
