@@ -63,14 +63,13 @@ class fragment_home : Fragment() {
 
 
 
-        //Recycler 2 Favoris
+        //Recycler 2 mieux notés
 
 
-        val result2 = movieService.getService("star wars")
+        val result2 = movieService.getTopRated()
         result2.enqueue(object : Callback<FilmList> {
             override fun onResponse(call: Call<FilmList>, response: Response<FilmList>) {
                 if (response.isSuccessful) {
-                    Log.d("HomeActivity", "Réponse réussie")
                     val filmList = response.body()
                     dataList = filmList?.results?: emptyList()
                     val recycler = fragment_recycler.newInstance(dataList)
@@ -87,6 +86,31 @@ class fragment_home : Fragment() {
                 Log.e("API Error", "API call failed", t)
             }
         })
+
+        //Recycler 3 Tendances
+
+        val result3 = movieService.getTendanceSemaine()
+        result3.enqueue(object : Callback<FilmList> {
+            override fun onResponse(call: Call<FilmList>, response: Response<FilmList>) {
+                if (response.isSuccessful) {
+                    val filmList = response.body()
+                    dataList = filmList?.results?: emptyList()
+                    val recycler = fragment_recycler.newInstance(dataList)
+
+                    childFragmentManager.beginTransaction()
+                        .replace(R.id.fragment_recycler_trend, recycler)
+                        .commit()
+                } else {
+                    Log.d("API Error", "Response code: ${response.code()}")
+                }
+            }
+
+            override fun onFailure(call: Call<FilmList>, t: Throwable) {
+                Log.e("API Error", "API call failed", t)
+            }
+        })
+
+
 
         return view
     }

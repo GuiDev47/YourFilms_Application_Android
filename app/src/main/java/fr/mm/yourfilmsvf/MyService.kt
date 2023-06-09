@@ -10,13 +10,9 @@ import com.google.gson.JsonObject
 import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.Response
-import retrofit2.http.GET
-import retrofit2.http.Query
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.http.Body
-import retrofit2.http.Headers
-import retrofit2.http.POST
+import retrofit2.http.*
 
 
 interface MyService {
@@ -48,5 +44,16 @@ interface MyService {
     @POST("account/19845726/favorite")
     fun addFavorites(@Body body: RequestBody): Call<JsonObject>
 
+    @GET("movie/{scannedResult}/external_ids?api_key=$API_KEY")
+    fun getIdFromExternalId(@Path("scannedResult") scannedResult: String): Call<IdInfos>
+
+    @GET("find/{external_id}?api_key=$API_KEY&external_source=imdb_id&language=FR")
+    fun getFilmById(@Path("external_id") externalId: String): Call<MovieResponse>
+
+    @GET("movie/top_rated?api_key=$API_KEY&language=FR&page=1")
+    fun getTopRated(): Call<FilmList>
+
+    @GET("trending/movie/week?api_key=$API_KEY&language=FR")
+    fun getTendanceSemaine(): Call<FilmList>
 
 }

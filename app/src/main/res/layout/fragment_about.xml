@@ -44,7 +44,7 @@
         android:layout_marginLeft="24dp"
         android:textSize="15sp"
         android:textColor="@color/white"
-        android:text="L'application 'YourFilms' a été créée dans le cadre des études d'ingénierie numérique à l'EPF Cachan de Guillaume BODARD, et ainsi de l'évaluation du module 'Matériel Mobile'."
+        android:text="L'application 'YourFilms' a été créée dans le cadre des études d'ingénierie numérique à l'EPF Cachan de Guillaume BODARD et Maxence DUMONTIER, et ainsi de l'évaluation du module 'Matériel Mobile'."
     />
 
     <TextView

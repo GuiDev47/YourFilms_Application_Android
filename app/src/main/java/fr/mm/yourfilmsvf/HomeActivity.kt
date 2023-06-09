@@ -34,9 +34,9 @@ class HomeActivity : AppCompatActivity() {
         bottomNavigationView.setOnNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.menu_item_qrcode -> {
-                    val fragment_home = fragment_home() // Remplacez FragmentMenu1 par votre propre fragment
+                    val QRCodeScannerFragment = QRCodeScannerFragment() // Remplacez FragmentMenu1 par votre propre fragment
                     supportFragmentManager.beginTransaction()
-                        .replace(R.id.fragment_container, fragment_home)
+                        .replace(R.id.fragment_container, QRCodeScannerFragment)
                         .commit()
                     true
                 }
